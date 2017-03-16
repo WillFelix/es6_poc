@@ -1,0 +1,21 @@
+.flex {
+	display: flex;
+}
+
+.center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#footer {
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+}
+
+.content {
+	display: flex;
+	justify-content: space-around;
+	padding: 20px;
+}
