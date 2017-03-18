@@ -11,6 +11,13 @@
 .column {
 	flex-direction: column;
 }
+.f-row {
+	flex-direction: row;
+}
+
+.vc {
+	align-items: center;
+}
 
 #footer {
 	margin-top: 100px;
@@ -21,6 +28,11 @@
 .content {
 	display: flex;
 	justify-content: space-around;
+	padding: 20px;
+}
+
+.flex {
+	display: flex;
 	padding: 20px;
 }
 
@@ -36,6 +48,6 @@
 	background-color: grey;
 }
 
-.m-t-400 {
-	# margin-top: 25%;
+.m-t {
+	#margin-top: 10px;
 }

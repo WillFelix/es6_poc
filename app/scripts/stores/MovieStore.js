@@ -7,7 +7,7 @@ class MovieStore extends EventEmitter {
     constructor() {
         super();
         this.movies = [];
-        this.hasError = false;
+        this.somethingWrong = false;
     }
 
     all() {
@@ -15,19 +15,18 @@ class MovieStore extends EventEmitter {
     }
 
     hasError() {
-        return this.hasError;
+        return this.somethingWrong;
     }
 
     findByActor(name) {
         axios.get(`http://netflixroulette.net/api/api.php?actor=${name}`)
         .then((result) => {
-            if (result.message) {
-                this.hasError = true;
-            } else {
-                this.movies = result.data;
-                this.hasError = false;
-            }
-
+            this.movies = result.data;
+            this.somethingWrong = false;
+            this.emit("change");
+        }).catch( (result) => {
+            this.movies = [];
+            this.somethingWrong = true;
             this.emit("change");
         });
     }

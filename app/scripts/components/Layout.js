@@ -5,10 +5,10 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 import Home from "../pages/Home";
-import ChuckNorrisP from "../pages/ChuckNorris";
-import MovieP from "../pages/Cinema";
-import QuoteP from "../pages/Quote";
-import GifP from "../pages/Gif";
+import ChuckNorris from "../pages/ChuckNorris";
+import Cinema from "../pages/Cinema";
+import MyQuotes from "../pages/Quote";
+import DailyGIF from "../pages/Gif";
 
 export default class Layout extends React.Component {
 
@@ -23,10 +23,10 @@ export default class Layout extends React.Component {
 					<Header title="React + ES6"/>
 					<div>
 						<Route exact path="/" component={Home} />
-						<Route path="/chuck" component={ChuckNorrisP} />
-						<Route path="/movies" component={MovieP} />
-						<Route path="/quote" component={QuoteP} />
-						<Route path="/gif" component={GifP} />
+						<Route path="/chuck" component={ChuckNorris} />
+						<Route path="/movies" component={Cinema} />
+						<Route path="/quote" component={MyQuotes} />
+						<Route path="/gif" component={DailyGIF} />
 					</div>
 					<Footer title="Crow Studio" />
 				</div>

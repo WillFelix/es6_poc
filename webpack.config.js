@@ -26,6 +26,7 @@ module.exports = {
 	devServer: {
 		port: 4000,
 		contentBase: __dirname + '/build',
-		inline: true
+		inline: true,
+		historyApiFallback: true
 	}
 }
