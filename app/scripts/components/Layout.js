@@ -7,7 +7,7 @@ import Footer from "./Footer";
 import Home from "../pages/Home";
 import ChuckNorris from "../pages/ChuckNorris";
 import Cinema from "../pages/Cinema";
-import MyQuotes from "../pages/Quote";
+import MyQuotes from "../pages/MyQuotes";
 import DailyGIF from "../pages/Gif";
 
 export default class Layout extends React.Component {

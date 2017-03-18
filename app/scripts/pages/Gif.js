@@ -1,16 +1,48 @@
 import React from "react";
 
+import * as GifAction from "../actions/GifAction";
+import GifStore from "../stores/GifStore";
+
 export default class Gif extends React.Component {
+
+	constructor() {
+		super();
+		this.state = { gif: "" };
+	}
+
+	componentWillMount() {
+		GifStore.on("change", () => {
+			this.setState({
+				gif: GifStore.gif()
+			})
+		});
+	}
+
+	componentWillUnmount() {
+		this.setState({
+			gif: ""
+		});
+	}
+
+	generate() {
+		GifAction.generate();
+	}
 
 	render() {
 		return (
-			<div>
-				<br /><br /><br />
-				<div class="container">
-					<div class="jumbotron">
-						<h1>Gif</h1>
-						<p>This is a template showcasing the optional theme stylesheet included in Bootstrap. Use it as a starting point to create something more unique by building on or modifying it.</p>
+			<div class="container m-t">
+				<div class="jumbotron">
+					<h1>Gif</h1>
+					<p>Gif API to you have some fun during your sadly life. Enjoy it press the button below.</p>
+					<p><button class='btn btn-primary' onClick={this.generate.bind(this)}>Generate GIF</button></p>
+				</div>
+
+				<div class='row'>
+					<div class='col-md-3'></div>
+					<div class='col-md-6'>
+						<img src={this.state.gif} width='100%' />
 					</div>
+					<div class='col-md-3'></div>
 				</div>
 			</div>
 		);
