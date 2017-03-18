@@ -1,41 +1,36 @@
-import React from "react";
+import React from 'react';
+import { BrowserRouter as Router, Route, Link, browserHistory as history } from 'react-router-dom';
 
 import Header from "./Header";
 import Footer from "./Footer";
-import axios from "axios";
-
-import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Home from "../pages/Home";
-import About from "../pages/About";
+import ChuckNorrisP from "../pages/ChuckNorris";
+import MovieP from "../pages/Cinema";
+import QuoteP from "../pages/Quote";
+import GifP from "../pages/Gif";
 
 export default class Layout extends React.Component {
 
 	constructor() {
 		super();
-		this.state = { name: "Will" };
-		this.name = "Will";
 	}
-
-	// componentWillMount() {
-	// 	axios.get("http://api.icndb.com/jokes/random/5")
-	// 	.then((result) => {
-	// 		let arr = result.data.value;
-	// 	});
-	// }
 
 	render() {
 		return (
-			<div>
-				<Header title="ES6 | Ninja Edition"/>
-
-				<Router>
-					<Route exact path="/" component={Home}/>
-					<Route path="/about" component={About}/>
-				</Router>
-
-				<Footer title="Crow Studio" />
-			</div>
+			<Router history={history}>
+				<div>
+					<Header title="React + ES6"/>
+					<div>
+						<Route exact path="/" component={Home} />
+						<Route path="/chuck" component={ChuckNorrisP} />
+						<Route path="/movies" component={MovieP} />
+						<Route path="/quote" component={QuoteP} />
+						<Route path="/gif" component={GifP} />
+					</div>
+					<Footer title="Crow Studio" />
+				</div>
+			</Router>
 		);
 	}
 }
