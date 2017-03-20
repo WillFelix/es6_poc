@@ -7,20 +7,21 @@ export default class Gif extends React.Component {
 
 	constructor() {
 		super();
-		this.state = { gif: "" };
+		this.state = { gif: GifStore.gif() };
+		this.gif = this.gif.bind(this);
 	}
 
 	componentWillMount() {
-		GifStore.on("change", () => {
-			this.setState({
-				gif: GifStore.gif()
-			})
-		});
+		GifStore.on("change", gif);
 	}
 
 	componentWillUnmount() {
+		GifStore.removeListener("change", gif);
+	}
+
+	gif() {
 		this.setState({
-			gif: ""
+			gif: GifStore.gif()
 		});
 	}
 

@@ -9,27 +9,31 @@ export default class Cinema extends React.Component {
 	constructor() {
 		super();
 		this.state = { name: "", movies: [], errorMsg: "" };
+
+		this.all = this.all.bind(this);
 	}
 
 	componentWillMount() {
-		MovieStore.on("change", () => {
-			let movies = [];
-			let errorMsg = "";
-
-			if ( MovieStore.hasError() ) {
-				errorMsg = "<div class='col-md-12'><div class='alert alert-danger'>Nenhum filme encontrado com este ator.</div></div>";
-			} else {
-				movies = MovieStore.all();
-			}
-
-			this.setState({
-				movies, errorMsg
-			});
-		});
+		MovieStore.on("change", all);
 	}
 
 	componentWillUnmount() {
-		this.state.movies = [];
+		MovieStore.removeListener("change", all);
+	}
+
+	all() {
+		let movies = [];
+		let errorMsg = "";
+
+		if ( MovieStore.hasError() ) {
+			errorMsg = "<div class='col-md-12'><div class='alert alert-danger'>Nenhum filme encontrado com este ator.</div></div>";
+		} else {
+			movies = MovieStore.all();
+		}
+
+		this.setState({
+			movies, errorMsg
+		});
 	}
 
 	changeActorName(e) {

@@ -7,22 +7,23 @@ import Quote from "../components/Quote";
 export default class MyQuotes extends React.Component {
 	constructor() {
 		super();
-		this.state = { quotes: [] };
+		this.state = { quotes: QuoteStore.all() };
+		this.all = this.all.bind(this);
 
 		QuoteAction.generate();
 	}
 
 	componentWillMount() {
-		QuoteStore.on("change", () => {
-			this.setState({
-				quotes: QuoteStore.all()
-			})
-		});
+		QuoteStore.on("change", all);
 	}
 
 	componentWillUnmount() {
+		QuoteStore.removeListener("change", all);
+	}
+
+	all() {
 		this.setState({
-			quotes: []
+			quotes: QuoteStore.all()
 		});
 	}
 

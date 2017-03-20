@@ -8,22 +8,22 @@ export default class ChuckNorris extends React.Component {
 
 	constructor() {
 		super();
-		this.state = { phrases: [] };
-
-		ChuckAction.generate();
+		this.state = { phrases: ChuckStore.all() };
+		this.setAll = this.setAll.bind(this);
 	}
 
 	componentWillMount() {
-		ChuckStore.on("change", () => {
-			this.setState({
-				phrases: ChuckStore.all()
-			});
-		});
+		ChuckAction.generate();
+		ChuckStore.on("change", this.setAll );
 	}
 
 	componentWillUnmount() {
+		ChuckStore.removeListener("change", this.setAll );
+	}
+
+	setAll() {
 		this.setState({
-			phrases: []
+			phrases: ChuckStore.all()
 		});
 	}
 
