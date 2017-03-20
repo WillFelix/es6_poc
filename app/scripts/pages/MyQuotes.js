@@ -14,11 +14,11 @@ export default class MyQuotes extends React.Component {
 	}
 
 	componentWillMount() {
-		QuoteStore.on("change", all);
+		QuoteStore.on("change", this.all);
 	}
 
 	componentWillUnmount() {
-		QuoteStore.removeListener("change", all);
+		QuoteStore.removeListener("change", this.all);
 	}
 
 	all() {

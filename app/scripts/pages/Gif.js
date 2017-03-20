@@ -12,11 +12,11 @@ export default class Gif extends React.Component {
 	}
 
 	componentWillMount() {
-		GifStore.on("change", gif);
+		GifStore.on("change", this.gif);
 	}
 
 	componentWillUnmount() {
-		GifStore.removeListener("change", gif);
+		GifStore.removeListener("change", this.gif);
 	}
 
 	gif() {

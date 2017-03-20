@@ -14,11 +14,11 @@ export default class Cinema extends React.Component {
 	}
 
 	componentWillMount() {
-		MovieStore.on("change", all);
+		MovieStore.on("change", this.all);
 	}
 
 	componentWillUnmount() {
-		MovieStore.removeListener("change", all);
+		MovieStore.removeListener("change", this.all);
 	}
 
 	all() {
@@ -58,6 +58,7 @@ export default class Cinema extends React.Component {
 					<h1>Movie</h1>
 					<p>This API uses the Netflix Catalog to brings up the movies based of the actors name.</p>
 					<hr/>
+					
 					<div class="row">
 						<div class="col-md-8">
 							<input type="text" class="form-control" onChange={this.changeActorName.bind(this)} placeholder="Insira o nome do ator" />
